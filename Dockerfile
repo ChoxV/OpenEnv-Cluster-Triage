@@ -1,7 +1,8 @@
 # ── OpenEnv: Distributed Data Cluster Triage ──────────────────────────────
 # Serves:
 #   • OpenEnv HTTP API:  POST /reset, POST /step, GET /state, GET /health
-#   • Gradio Web UI:     GET  /  (interactive demonstration)
+#   • Agent API:         GET  /agents, POST /agent/step
+#   • HTML/CSS/JS UI:    GET  /  (static/index.html)
 # Port: 7860 (required for Hugging Face Spaces)
 # ──────────────────────────────────────────────────────────────────────────
 
@@ -20,7 +21,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
 
-# Copy environment source
+# Copy environment source (includes static/ directory with index.html)
 COPY . .
 
 # Health check — confirms the FastAPI server is live
@@ -30,6 +31,5 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
 # Expose Hugging Face Spaces port
 EXPOSE 7860
 
-# Run the combined FastAPI + Gradio server
-# app:app refers to the `app` variable in app.py (the gr.mount_gradio_app result)
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860", "--workers", "1"]
+# Run the FastAPI server (HTML UI is served via StaticFiles at /)
+CMD ["uvicorn", "app:fastapi_app", "--host", "0.0.0.0", "--port", "7860", "--workers", "1"]

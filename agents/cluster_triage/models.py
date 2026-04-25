@@ -41,3 +41,4 @@ class StepResult(BaseModel):
 # --- RESET REQUEST (for HTTP API) ---
 class ResetRequest(BaseModel):
     task: str = Field("easy", description="Task ID: easy, medium, hard, very_hard, nightmare")
+    agent_id: Optional[str] = Field(None, description="Agent ID from the registry (e.g. cluster_triage)")

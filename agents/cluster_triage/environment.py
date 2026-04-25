@@ -1,7 +1,7 @@
 import copy
 import json
 import re
-from models import ClusterObservation, ClusterAction, StepResult, NodeStatus, JobStatus
+from .models import ClusterObservation, ClusterAction, StepResult, NodeStatus, JobStatus
 
 
 class ClusterTriageEnv:

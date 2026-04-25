@@ -15,8 +15,8 @@ from typing import List, Optional
 from openai import OpenAI
 from dotenv import load_dotenv
 
-from environment import ClusterTriageEnv
-from models import ClusterAction
+from agents.cluster_triage.environment import ClusterTriageEnv
+from agents.cluster_triage.models import ClusterAction
 
 load_dotenv()
 

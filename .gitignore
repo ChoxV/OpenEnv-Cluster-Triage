@@ -1,3 +1,5 @@
 .env
 __pycache__/
 validate.sh
+cluster_triage_updated.code-workspace
+.DS_Store

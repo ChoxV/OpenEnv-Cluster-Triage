@@ -1,15 +1,14 @@
-# Core web framework (serves both the OpenEnv API and Gradio UI)
+# Core web framework (serves both the OpenEnv RL API and HTML/CSS/JS UI)
 fastapi==0.115.6
 uvicorn[standard]==0.32.1
 
-# Gradio UI
-gradio==5.9.1
-requests>=2.31.0
+# Static file serving (replaces Gradio)
+aiofiles>=23.0.0
 
 # Pydantic (models, validation)
 pydantic==2.10.4
 
-# OpenAI client (for inference.py LLM calls)
+# OpenAI client (for inference.py and /agent/step LLM calls)
 openai==1.58.1
 openenv-core<=0.2.0
 
@@ -18,3 +17,9 @@ python-dotenv==1.0.1
 
 # HTTP support for health checks in Docker
 httpx==0.28.1
+
+# HTTP support for openenv validate
+requests>=2.31.0
+
+# Graph algorithms for Split-Brain network topology pathfinding
+networkx>=3.0
